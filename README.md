@@ -6,13 +6,13 @@ Official machine registry for [This Machine](https://thismachine.ai).
 
 This repository contains pre-configured machine templates that can be used with This Machine. A **machine** is a Claude Code-powered agent that you can chat with, collaborate on with others, and customize for general or specific purposes.
 
-When you create a new machine without providing your own repository, the default "everything-machine" template is automatically set up for you.
+When you create a new machine without providing your own repository, the default "anything-machine" template is automatically set up for you.
 
 ## Available Machines
 
 | Machine | Description |
 |---------|-------------|
-| [everything-machine](./machines/everything-machine) | General-purpose machine with full Claude Code capabilities |
+| [anything-machine](./machines/anything-machine) | General-purpose machine with full Claude Code capabilities |
 
 ## Using a Machine Template
 

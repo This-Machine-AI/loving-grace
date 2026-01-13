@@ -1,4 +1,4 @@
-# Everything Machine
+# Anything Machine
 
 The default general-purpose machine template for This Machine.
 

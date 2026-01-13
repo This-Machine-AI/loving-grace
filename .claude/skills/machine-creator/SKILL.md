@@ -36,7 +36,7 @@ The agent's instructions. Include:
 - Available tools and capabilities
 - Domain-specific guidance
 
-Use `machines/everything-machine/CLAUDE.md` as reference for sandbox environment details (network, preview URLs, secrets).
+Use `machines/anything-machine/CLAUDE.md` as reference for sandbox environment details (network, preview URLs, secrets).
 
 ### 3. Create .claude/settings.json
 
@@ -88,4 +88,4 @@ machines/research-assistant/
 - Machine names: lowercase, hyphenated (e.g., `code-reviewer`, `data-analyst`)
 - Keep CLAUDE.md focused on the agent's purpose
 - Only add permissions/MCP servers the machine actually needs
-- Reference `everything-machine` for general sandbox environment details rather than duplicating
+- Reference `anything-machine` for general sandbox environment details rather than duplicating

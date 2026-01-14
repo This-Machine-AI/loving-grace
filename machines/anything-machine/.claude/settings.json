@@ -2,6 +2,6 @@
   "permissions": {
     "allow": [],
     "deny": [],
-    "defaultMode": "acceptEdits"
+    "defaultMode": "bypassPermissions"
   }
 }

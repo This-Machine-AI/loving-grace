@@ -13,6 +13,7 @@ When you create a new machine without providing your own repository, the default
 | Machine | Description |
 |---------|-------------|
 | [anything-machine](./machines/anything-machine) | General-purpose machine with full Claude Code capabilities |
+| [alignment-research-assistant](./machines/alignment-research-assistant) | AI safety and alignment research assistant |
 
 ## Using a Machine Template
 

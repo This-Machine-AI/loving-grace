@@ -36,4 +36,28 @@ You have access to the **Composio MCP**, which provides integration with 100+ th
 2. **Check connections**: Use `COMPOSIO_MANAGE_CONNECTIONS` to see which services are connected
 3. **Execute actions**: Use `COMPOSIO_MULTI_EXECUTE_TOOL` to perform actions on connected services
 
-If a service isn't connected yet, the user will need to authenticate through the Composio dashboard first
+If a service isn't connected yet, the user will need to authenticate through the Composio dashboard first.
+
+### GitHub via Composio
+
+When you need to push commits or create PRs and `git push` fails (common in sandboxed environments), use Composio's GitHub tools instead:
+
+1. **Push changes**: Use `GITHUB_COMMIT_MULTIPLE_FILES` to commit and push files atomically
+   ```
+   Arguments:
+   - owner: "This-Machine-AI"
+   - repo: "repo-name"
+   - branch: "branch-name"
+   - base_branch: "main" (if creating a new branch)
+   - message: "commit message"
+   - upserts: [{"path": "file/path.md", "content": "file content", "encoding": "utf-8"}]
+   ```
+
+2. **Create PR**: Use `GITHUB_CREATE_A_PULL_REQUEST`
+   ```
+   Arguments:
+   - owner, repo, head (branch with changes), base (target branch)
+   - title, body (PR description)
+   ```
+
+Remember to pass `session_id` from `COMPOSIO_SEARCH_TOOLS` response to subsequent calls

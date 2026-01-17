@@ -157,8 +157,7 @@ Modify your own machine configuration within your sandbox.
 These files at `/home/user/workspace` define who you are:
 
 | File | Purpose |
-|------|--------|
-| `CLAUDE.md` | Your instructions, persona, and capabilities |
+|------|---------|' | `CLAUDE.md` | Your instructions, persona, and capabilities |
 | `.claude/settings.json` | Permission settings (what requires approval) |
 | `.mcp.json` | MCP server integrations (external services) |
 
@@ -369,7 +368,7 @@ def init_machine(
     """
     # Validate machine name
     if not validate_machine_name(machine_name):
-        print(f"❌ Invalid machine name: '{machine_name}'")
+        print(f"\u274c Invalid machine name: '{machine_name}'")
         print("   Machine names must be lowercase, hyphenated, and start with a letter")
         print("   Examples: code-reviewer, data-analyst, my-custom-machine")
         return False
@@ -380,10 +379,10 @@ def init_machine(
     # Check if directory exists
     if machine_dir.exists():
         if force:
-            print(f"⚠️  Removing existing directory: {machine_dir}")
+            print(f"\u26a0\ufe0f  Removing existing directory: {machine_dir}")
             shutil.rmtree(machine_dir)
         else:
-            print(f"❌ Directory already exists: {machine_dir}")
+            print(f"\u274c Directory already exists: {machine_dir}")
             print("   Use --force to overwrite")
             return False
 
@@ -391,15 +390,15 @@ def init_machine(
     if template:
         template_path = get_template_path(template)
         if not template_path.exists():
-            print(f"❌ Template not found: {template}")
+            print(f"\u274c Template not found: {template}")
             available = [d.name for d in get_template_path("").parent.iterdir() if d.is_dir()]
             if available:
                 print(f"   Available templates: {', '.join(available)}")
             return False
 
-        print(f"📋 Using template: {template}")
+        print(f"\ud83d\udccb Using template: {template}")
         shutil.copytree(template_path, machine_dir)
-        print(f"✅ Created machine from template: {machine_dir}")
+        print(f"\u2705 Created machine from template: {machine_dir}")
         return True
 
     # Create directory structure
@@ -411,29 +410,29 @@ def init_machine(
         # Create CLAUDE.md
         claude_md = machine_dir / "CLAUDE.md"
         claude_md.write_text(create_default_claude_md(machine_name))
-        print(f"✅ Created {claude_md.relative_to(output_path)}")
+        print(f"\u2705 Created {claude_md.relative_to(output_path)}")
 
         # Create .claude/settings.json
         settings_file = machine_dir / ".claude" / "settings.json"
         settings_file.write_text(json.dumps(create_default_settings(), indent=2) + "\n")
-        print(f"✅ Created {settings_file.relative_to(output_path)}")
+        print(f"\u2705 Created {settings_file.relative_to(output_path)}")
 
         # Create .claude/skills/self-update/SKILL.md
         skill_file = machine_dir / ".claude" / "skills" / "self-update" / "SKILL.md"
         skill_file.write_text(create_self_update_skill())
-        print(f"✅ Created {skill_file.relative_to(output_path)}")
+        print(f"\u2705 Created {skill_file.relative_to(output_path)}")
 
         # Create .mcp.json
         mcp_file = machine_dir / ".mcp.json"
         mcp_file.write_text(json.dumps(create_default_mcp(), indent=2) + "\n")
-        print(f"✅ Created {mcp_file.relative_to(output_path)}")
+        print(f"\u2705 Created {mcp_file.relative_to(output_path)}")
 
         # Create README.md
         readme_file = machine_dir / "README.md"
         readme_file.write_text(create_default_readme(machine_name))
-        print(f"✅ Created {readme_file.relative_to(output_path)}")
+        print(f"\u2705 Created {readme_file.relative_to(output_path)}")
 
-        print(f"\n🎉 Machine initialized successfully: {machine_dir}")
+        print(f"\n\ud83c\udf89 Machine initialized successfully: {machine_dir}")
         print("\nNext steps:")
         print(f"  1. Edit {machine_name}/CLAUDE.md to define the machine's persona")
         print(f"  2. Configure permissions in {machine_name}/.claude/settings.json")
@@ -443,7 +442,7 @@ def init_machine(
         return True
 
     except Exception as e:
-        print(f"❌ Error creating machine: {e}")
+        print(f"\u274c Error creating machine: {e}")
         if machine_dir.exists():
             shutil.rmtree(machine_dir)
         return False

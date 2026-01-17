@@ -17,7 +17,7 @@ class ValidationError:
         self.file = file
 
     def __str__(self):
-        icon = "❌" if self.level == "error" else "⚠️"
+        icon = "\u274c" if self.level == "error" else "\u26a0\ufe0f"
         if self.file:
             return f"{icon} [{self.file}] {self.message}"
         return f"{icon} {self.message}"
@@ -271,14 +271,14 @@ Examples:
     machine_path = args.path.resolve()
 
     if not machine_path.exists():
-        print(f"❌ Machine directory not found: {machine_path}")
+        print(f"\u274c Machine directory not found: {machine_path}")
         sys.exit(1)
 
     if not machine_path.is_dir():
-        print(f"❌ Path is not a directory: {machine_path}")
+        print(f"\u274c Path is not a directory: {machine_path}")
         sys.exit(1)
 
-    print(f"🔍 Validating machine: {machine_path.name}\n")
+    print(f"\ud83d\udd0d Validating machine: {machine_path.name}\n")
 
     errors, warnings = validate_machine(machine_path)
 
@@ -304,13 +304,13 @@ Examples:
         error_count += warning_count
 
     if error_count == 0 and warning_count == 0:
-        print("✅ Machine template is valid!")
+        print("\u2705 Machine template is valid!")
         sys.exit(0)
     elif error_count == 0:
-        print(f"✅ Machine template is valid with {warning_count} warning(s)")
+        print(f"\u2705 Machine template is valid with {warning_count} warning(s)")
         sys.exit(0)
     else:
-        print(f"❌ Validation failed: {error_count} error(s), {warning_count} warning(s)")
+        print(f"\u274c Validation failed: {error_count} error(s), {warning_count} warning(s)")
         sys.exit(1)
 
 

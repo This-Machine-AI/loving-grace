@@ -55,6 +55,7 @@ The `self-update` skill teaches machines how to modify their own configuration (
 
 Run `init_machine.py` to create the directory structure, then customize the generated files.
 
+
 ### 2. Template-Based (Recommended for specialized machines)
 
 Use `--template` flag to start from a pre-configured archetype:

@@ -1,15 +1,39 @@
 ---
 name: machine-creator
-description: Create new machine templates for This Machine. Use when adding a new machine to the registry, creating a machine template, or when asked to "create a machine" or "add a new machine".
+description: Create and manage machine templates for This Machine. Use when creating a new machine, scaffolding machine directories, validating an existing machine template, configuring permissions or MCP servers, or designing machine personas. Supports quick scaffolding with init_machine.py, template-based creation, and interactive guided workflows.
 ---
 
 # Machine Creator
 
 Create machine templates that users can select when creating new machines in This Machine.
 
+## Quick Start
+
+### Scaffold a New Machine
+
+```bash
+python scripts/init_machine.py <machine-name> --path machines/
+```
+
+This creates a complete machine directory with all required files.
+
+### Use a Template
+
+```bash
+python scripts/init_machine.py <machine-name> --path machines/ --template code-reviewer
+```
+
+Available templates: `general-purpose`, `code-reviewer`, `research-assistant`, `writing-assistant`, `data-analyst`
+
+### Validate a Machine
+
+```bash
+python scripts/validate_machine.py machines/<machine-name>
+```
+
 ## Machine Structure
 
-Each machine requires these files in `machines/<machine-name>/`:
+Every machine requires these files in `machines/<machine-name>/`:
 
 ```
 <machine-name>/
@@ -20,38 +44,70 @@ Each machine requires these files in `machines/<machine-name>/`:
 └── README.md              # Public documentation
 ```
 
-## Creating a Machine
+## Creation Workflows
 
-### 1. Create the directory
+### 1. Quick Scaffold (Recommended for simple machines)
 
-```bash
-mkdir -p machines/<machine-name>/.claude
-```
+Run `init_machine.py` to create the directory structure, then customize the generated files.
 
-### 2. Create CLAUDE.md
+### 2. Template-Based (Recommended for specialized machines)
+
+Use `--template` flag to start from a pre-configured archetype:
+
+| Template | Best For |
+|----------|----------|
+| `general-purpose` | Flexible, no constraints |
+| `code-reviewer` | Code quality and PR reviews |
+| `research-assistant` | Literature review and analysis |
+| `writing-assistant` | Content creation and editing |
+| `data-analyst` | Data exploration and visualization |
+
+### 3. Guided Creation (For custom machines)
+
+When the user wants a custom machine, gather information:
+
+1. **Name**: Lowercase, hyphenated (e.g., `my-custom-machine`)
+2. **Purpose**: What should this machine do?
+3. **Capabilities**: What should it excel at?
+4. **Permissions**: How much autonomy? (See references/permission-presets.md)
+5. **Integrations**: What MCP servers needed? (See references/mcp-integrations.md)
+
+Then create the machine using `init_machine.py` and customize the CLAUDE.md.
+
+## File Guidelines
+
+### CLAUDE.md
 
 The agent's instructions. Include:
 - Agent persona/role
 - Workspace info (`/home/user/workspace`)
-- Available tools and capabilities
+- Capabilities and focus areas
 - Domain-specific guidance
 
-Use `machines/anything-machine/CLAUDE.md` as reference for sandbox environment details (network, preview URLs, secrets).
+For detailed patterns, see **references/persona-patterns.md**.
 
-### 3. Create .claude/settings.json
+For sandbox environment details (network, preview URLs, secrets), reference `machines/anything-machine/CLAUDE.md` or copy the Environment section from the general-purpose template.
+
+### .claude/settings.json
+
+Permission configuration. Options:
 
 ```json
+// Unrestricted (default)
 {
   "permissions": {
     "allow": [],
-    "deny": []
+    "deny": [],
+    "defaultMode": "bypassPermissions"
   }
 }
 ```
 
-Add specific permissions as needed for the machine's purpose.
+For detailed presets, see **references/permission-presets.md**.
 
-### 4. Create .mcp.json
+### .mcp.json
+
+MCP server integrations:
 
 ```json
 {
@@ -59,33 +115,32 @@ Add specific permissions as needed for the machine's purpose.
 }
 ```
 
-Add MCP servers for integrations (GitHub, databases, APIs, etc.).
+For common integrations (GitHub, databases, etc.), see **references/mcp-integrations.md**.
 
-### 5. Create README.md
+### README.md
 
-Document for users browsing the registry:
+Documentation for users browsing the registry:
 - What the machine does
 - Included capabilities
 - Configuration options
 
-### 6. Update root README.md
+## After Creation
 
-Add the new machine to the "Available Machines" table.
+1. **Validate**: Run `validate_machine.py` to check completeness
+2. **Update registry**: Add the machine to the root README.md table
+3. **Test**: Try the machine to verify it works as expected
 
-## Example: Research Assistant
+## Naming Conventions
 
-```bash
-# Structure
-machines/research-assistant/
-├── CLAUDE.md           # "You are a research assistant..."
-├── .claude/settings.json
-├── .mcp.json           # Could include web search MCP
-└── README.md
-```
+- Machine names: lowercase, hyphenated
+- Start with a letter
+- Examples: `code-reviewer`, `data-analyst`, `my-custom-machine`
 
-## Guidelines
+## Reference Documentation
 
-- Machine names: lowercase, hyphenated (e.g., `code-reviewer`, `data-analyst`)
-- Keep CLAUDE.md focused on the agent's purpose
-- Only add permissions/MCP servers the machine actually needs
-- Reference `anything-machine` for general sandbox environment details rather than duplicating
+Load these files when you need detailed guidance:
+
+- **references/persona-patterns.md** - How to write effective CLAUDE.md files
+- **references/permission-presets.md** - Permission configuration options
+- **references/mcp-integrations.md** - Common MCP server configurations
+- **references/machine-types.md** - Guide to machine archetypes

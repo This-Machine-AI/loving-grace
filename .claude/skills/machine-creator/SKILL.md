@@ -83,6 +83,7 @@ The agent's instructions. Include:
 - Workspace info (`/home/user/workspace`)
 - Capabilities and focus areas
 - Domain-specific guidance
+- Self-reference section explaining what "yourself" means (the machine's own files)
 
 For detailed patterns, see **references/persona-patterns.md**.
 

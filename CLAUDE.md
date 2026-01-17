@@ -45,7 +45,7 @@ When you need to push commits or create PRs and `git push` fails (common in sand
 1. **Push changes**: Use `GITHUB_COMMIT_MULTIPLE_FILES` to commit and push files atomically
    ```
    Arguments:
-   - owner: "org-or-username"
+   - owner: "This-Machine-AI"
    - repo: "repo-name"
    - branch: "branch-name"
    - base_branch: "main" (if creating a new branch)

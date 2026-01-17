@@ -184,6 +184,26 @@ def validate_mcp(file_path: Path) -> list[ValidationError]:
     return validate_json_file(file_path, required_keys=["mcpServers"])
 
 
+def validate_self_update_skill(machine_path: Path) -> list[ValidationError]:
+    """Validate the self-update skill is present."""
+    errors = []
+    skill_path = machine_path / ".claude" / "skills" / "self-update" / "SKILL.md"
+
+    if not skill_path.exists():
+        errors.append(ValidationError(
+            "warning",
+            "Missing self-update skill - machines should include .claude/skills/self-update/SKILL.md"
+        ))
+    elif skill_path.stat().st_size < 100:
+        errors.append(ValidationError(
+            "warning",
+            "Self-update skill seems too short",
+            ".claude/skills/self-update/SKILL.md"
+        ))
+
+    return errors
+
+
 def validate_machine(machine_path: Path) -> tuple[list[ValidationError], list[ValidationError]]:
     """Validate a complete machine template.
 
@@ -202,6 +222,9 @@ def validate_machine(machine_path: Path) -> tuple[list[ValidationError], list[Va
 
     # Validate optional files
     all_errors.extend(validate_readme(machine_path / "README.md"))
+
+    # Validate self-update skill
+    all_errors.extend(validate_self_update_skill(machine_path))
 
     # Check .claude directory exists
     if not (machine_path / ".claude").is_dir():

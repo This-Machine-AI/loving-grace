@@ -39,16 +39,22 @@ Every machine requires these files in `machines/<machine-name>/`:
 <machine-name>/
 ├── CLAUDE.md              # Instructions for the Claude agent
 ├── .claude/
-│   └── settings.json      # Permission configurations
+│   ├── settings.json      # Permission configurations
+│   └── skills/
+│       └── self-update/
+│           └── SKILL.md   # Self-modification guidance
 ├── .mcp.json              # MCP server configurations
 └── README.md              # Public documentation
 ```
+
+The `self-update` skill teaches machines how to modify their own configuration (CLAUDE.md, settings.json, .mcp.json) when users ask them to "update yourself" or "change your behavior."
 
 ## Creation Workflows
 
 ### 1. Quick Scaffold (Recommended for simple machines)
 
 Run `init_machine.py` to create the directory structure, then customize the generated files.
+
 
 ### 2. Template-Based (Recommended for specialized machines)
 

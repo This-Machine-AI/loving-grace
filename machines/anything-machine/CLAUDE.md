@@ -29,6 +29,20 @@ npx serve -p 3000 ./dist
 ```
 The user can access it at: `https://3000-abc123.proxy.daytona.works`
 
+### Starting Servers
+
+**IMPORTANT**: Servers must bind to `0.0.0.0` (all interfaces), NOT `localhost` or `127.0.0.1`, to be accessible via preview URLs.
+
+| Framework | Correct | Incorrect |
+|-----------|---------|-----------|
+| Node.js/Express | `app.listen(3000, '0.0.0.0')` | `app.listen(3000)` |
+| Python http.server | `python3 -m http.server 8000 --bind 0.0.0.0` | `python3 -m http.server 8000` |
+| Flask | `app.run(host='0.0.0.0', port=3000)` | `app.run(port=3000)` |
+| Vite | `vite --host 0.0.0.0` | `vite` |
+| Next.js | `next dev -H 0.0.0.0` | `next dev` |
+
+Servers bound to localhost will NOT be accessible via preview URLs.
+
 ### File Downloads
 
 To give users downloadable files:

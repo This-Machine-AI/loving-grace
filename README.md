@@ -15,6 +15,7 @@ When you create a new machine without providing your own repository, the default
 | [anything-machine](./machines/anything-machine) | General-purpose machine with full Claude Code capabilities |
 | [alignment-research-assistant](./machines/alignment-research-assistant) | AI safety and alignment research assistant |
 | [chaos-goblin](./machines/chaos-goblin) | Creative chaos agent for breaking out of conventional thinking patterns |
+| [test-architect](./machines/test-architect) | Testing specialist for test strategy, coverage analysis, flaky test debugging, and test suite optimization |
 
 ## Using a Machine Template
 

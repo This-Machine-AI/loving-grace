@@ -14,7 +14,7 @@ When you create a new machine without providing your own repository, the default
 |---------|-------------|
 | [anything-machine](./machines/anything-machine) | General-purpose machine with full Claude Code capabilities |
 | [alignment-research-assistant](./machines/alignment-research-assistant) | AI safety and alignment research assistant |
-| [chaos-goblin](./machines/chaos-goblin) | Creative chaos agent for breaking out of conventional thinking patterns |
+| [incident-commander](./machines/incident-commander) | DevOps/SRE incident response coordinator for managing outages and post-mortems |
 | [prompt-whisperer](./machines/prompt-whisperer) | Prompt engineering assistant with adversarial roleplay to debug and harden AI prompts |
 
 ## Using a Machine Template

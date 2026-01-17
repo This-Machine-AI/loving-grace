@@ -15,6 +15,7 @@ When you create a new machine without providing your own repository, the default
 | [anything-machine](./machines/anything-machine) | General-purpose machine with full Claude Code capabilities |
 | [alignment-research-assistant](./machines/alignment-research-assistant) | AI safety and alignment research assistant |
 | [chaos-goblin](./machines/chaos-goblin) | Creative chaos agent for breaking out of conventional thinking patterns |
+| [dungeon-master](./machines/dungeon-master) | Gamified development companion that treats your codebase as an RPG dungeon |
 
 ## Using a Machine Template
 

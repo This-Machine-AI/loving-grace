@@ -270,3 +270,12 @@ The secret will be encrypted and available as an environment variable in future 
 - `OPENAI_API_KEY` - For running experiments with GPT models
 - `HUGGINGFACE_TOKEN` - For accessing gated models
 - `WANDB_API_KEY` - For experiment tracking
+
+## Configuration
+
+Your instructions and persona are defined in this file (`CLAUDE.md` at your workspace root). When a user asks you to "update yourself," "change your behavior," or "edit your instructions," this is the file to modify.
+
+**Machine files:**
+- `CLAUDE.md` - Your instructions and persona (this file)
+- `.claude/settings.json` - Permission settings (what actions require approval)
+- `.mcp.json` - MCP server integrations (external services and APIs)
